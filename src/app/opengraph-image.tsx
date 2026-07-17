@@ -24,9 +24,9 @@ export default function OgImage() {
           <svg width="44" height="44" viewBox="0 0 100 100">
             <path
               d="M50 0 L61 39 L100 50 L61 61 L50 100 L39 61 L0 50 L39 39 Z"
-              fill="#0b3c8d"
+              fill="#0b1e37"
             />
-            <path d="M50 0 L61 39 L100 50 L61 61 L50 100 Z" fill="#c8102e" />
+            <path d="M50 0 L61 39 L100 50 L61 61 L50 100 Z" fill="#b9120e" />
           </svg>
           <div
             style={{
@@ -57,7 +57,7 @@ export default function OgImage() {
               fontSize: 92,
               fontWeight: 800,
               letterSpacing: -4,
-              color: "#0b3c8d",
+              color: "#0b1e37",
               lineHeight: 1.02,
             }}
           >
@@ -78,7 +78,7 @@ export default function OgImage() {
           }}
         >
           <div>www.yakstars.net</div>
-          <div style={{ color: "#c8102e", fontWeight: 700 }}>
+          <div style={{ color: "#b9120e", fontWeight: 700 }}>
             LEMT Casarrubios · LPSO Ponte de Sor
           </div>
         </div>

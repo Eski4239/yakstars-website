@@ -6,17 +6,18 @@
 }
 
 @theme {
-  /* Brand palette — flat, elegant, WCAG AA on white */
+  /* Brand palette — sourced from the team's real trailer livery (RAL 5011/9006/3020/1021/9016) */
   --color-ink: #0b0c10; /* near-black text */
   --color-slate: #52535c; /* secondary text */
   --color-faint: #86878f; /* tertiary text, large sizes only */
-  --color-mist: #f5f5f7; /* light gray surface */
+  --color-mist: #f4f4f5; /* light gray surface */
   --color-line: #e7e7ec; /* hairlines */
-  --color-blue: #0b3c8d; /* deep aviation blue */
-  --color-blue-deep: #082b66;
-  --color-sky: #eef3fb; /* faint blue tint surface */
-  --color-red: #c8102e; /* rich racing red */
-  --color-gold: #f2a900; /* warm aviation yellow */
+  --color-blue: #0b1e37; /* RAL 5011 navy blue — primary */
+  --color-blue-deep: #071527;
+  --color-sky: #eef1f4; /* faint neutral tint surface */
+  --color-red: #b9120e; /* RAL 3020 racing red */
+  --color-gold: #fdb402; /* RAL 1021 racing yellow */
+  --color-silver: #a1a1a2; /* RAL 9006 silver grey */
 
   --animate-marquee: marquee 40s linear infinite;
 

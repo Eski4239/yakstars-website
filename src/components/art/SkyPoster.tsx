@@ -8,12 +8,12 @@ type Variant = {
 };
 
 const VARIANTS: Variant[] = [
-  { bg: "#0b3c8d", trail: "rgba(255,255,255,0.35)", plane: "#ffffff", accent: "#f2a900" },
-  { bg: "#eef3fb", trail: "rgba(11,60,141,0.25)", plane: "#0b3c8d" },
-  { bg: "#0b0c10", trail: "rgba(255,255,255,0.28)", plane: "#ffffff", accent: "#c8102e" },
-  { bg: "#f5f5f7", trail: "rgba(11,12,16,0.18)", plane: "#0b0c10", accent: "#c8102e" },
-  { bg: "#082b66", trail: "rgba(255,255,255,0.3)", plane: "#f2a900" },
-  { bg: "#c8102e", trail: "rgba(255,255,255,0.35)", plane: "#ffffff" },
+  { bg: "#0b1e37", trail: "rgba(255,255,255,0.35)", plane: "#ffffff", accent: "#fdb402" },
+  { bg: "#eef1f4", trail: "rgba(11,30,55,0.25)", plane: "#0b1e37" },
+  { bg: "#0b0c10", trail: "rgba(255,255,255,0.28)", plane: "#ffffff", accent: "#b9120e" },
+  { bg: "#f4f4f5", trail: "rgba(11,12,16,0.18)", plane: "#0b0c10", accent: "#b9120e" },
+  { bg: "#071527", trail: "rgba(255,255,255,0.3)", plane: "#fdb402" },
+  { bg: "#b9120e", trail: "rgba(255,255,255,0.35)", plane: "#ffffff" },
 ];
 
 const COMPOSITIONS = [

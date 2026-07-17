@@ -27,8 +27,11 @@ npm run lint
 | `src/app/` | Routes: home, about, team (+ pilots/[slug], support), aircraft, display, schedule, gallery, sponsors, media, contact, privacy, legal, 404. |
 
 Design tokens (colors, type scale, container) live in `src/app/globals.css`
-under `@theme` — pure white base, deep aviation blue `#0b3c8d`, racing red
-`#c8102e`, warm yellow `#f2a900`.
+under `@theme`. The palette is sourced directly from the team's real trailer
+livery (RAL 5011/9006/3020/1021/9016): pure white base, navy blue `#0b1e37`,
+racing red `#b9120e`, racing yellow `#fdb402`, and silver grey `#a1a1a2` as a
+secondary neutral. Navy/red/yellow are used as accents (nav, buttons, the
+star mark, stripes) rather than large fills, to keep the site feeling airy.
 
 ## Common edits
 
