@@ -26,13 +26,13 @@ Images/assets: the chat interface may not pass through attachments. When an imag
 
 ```bash
 npm install
-npm run dev     # http://localhost:3000
-npm run build   # production build — fully static, prerenders every route
-npm run start   # serve the production build
-npm run lint    # eslint (flat config, eslint-config-next core-web-vitals + typescript)
+npm run dev         # http://localhost:3000
+npm run build       # production build — fully static, prerenders every route
+npm run start       # serve the production build
+npm run lint        # eslint (flat config, eslint-config-next core-web-vitals + typescript)
+npm run test:e2e    # Playwright end-to-end/interaction tests (see below)
+npm run test:e2e:ui # same, in Playwright's interactive UI runner
 ```
-
-There is no test suite/framework configured in this repo.
 
 ## Git workflow
 
@@ -69,6 +69,18 @@ A few files hand-code hex instead of using theme tokens (because they run outsid
 
 - No raw apostrophes in JSX text — use `’`.
 - No synchronous `setState` inside effects — wrap in `requestAnimationFrame` or adjust state during render.
+
+### Testing
+
+Playwright is the test framework (`playwright.config.ts`, specs in `e2e/`). `npm run test:e2e` builds and serves the production bundle (`webServer: npm run build && npm run start`) and runs each spec against three projects:
+
+- `chromium` — Desktop Chrome viewport.
+- `mobile-chrome` — Pixel 7 viewport, for mobile-only UI (e.g. the hamburger nav).
+- `motion` — same as `chromium` but with `reducedMotion: 'no-preference'`, for the handful of specs (`e2e/motion/`) that assert on animation actually playing.
+
+Every other project defaults to `reducedMotion: 'reduce'` so interaction tests don't depend on animation timing — write new interaction/functional specs against that default, and only add a `motion`-project spec when the animation behavior itself is what's under test. Note: this reduced-motion default is exactly what caught a real hydration-mismatch bug in `Counter`/`DrawPath`/`HeroFlightPaths` (fixed by gating `useReducedMotion()`-dependent branches on a post-mount `mounted` flag) — keep that pattern in mind for any new component that branches rendering on `useReducedMotion()`.
+
+Specs are one per route/feature area (`smoke`, `nav`, `home`, `aircraft-explorer`, `display-sequence`, `gallery`, `contact-form`) rather than exhaustive per-component coverage — extend them as features are added.
 
 ### Photography
 

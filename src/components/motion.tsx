@@ -103,7 +103,11 @@ export function Counter({
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const reduce = useReducedMotion();
-  const [display, setDisplay] = useState(reduce ? value : 0);
+  // Always start at 0 to match the server render — `reduce` resolves
+  // synchronously on the client via matchMedia, which would otherwise make
+  // the very first client paint (already showing `value`) diverge from the
+  // server-rendered "0" and trigger a hydration mismatch.
+  const [display, setDisplay] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
@@ -175,7 +179,16 @@ export function DrawPath({
   strokeDasharray?: string;
   opacity?: number;
 }) {
-  const reduce = useReducedMotion();
+  const rawReduce = useReducedMotion();
+  // Defer to `false` until mounted so the first client paint (which resolves
+  // `reduce` synchronously via matchMedia) always matches the server's
+  // assumed-non-reduced markup instead of risking a hydration mismatch.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+  const reduce = mounted && rawReduce;
   return (
     <motion.path
       d={d}

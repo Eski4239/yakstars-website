@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { PLANE_PATH } from "@/components/art/Plane";
 
@@ -25,7 +26,18 @@ const TRAILS = [
  * small aircraft flying the loop. Purely presentational.
  */
 export function HeroFlightPaths() {
-  const reduce = useReducedMotion();
+  const rawReduce = useReducedMotion();
+  // `useReducedMotion()` resolves synchronously via matchMedia on the client,
+  // which can differ from the server's assumption and would otherwise change
+  // both the initial stroke-dasharray and whether the plane <g> renders at
+  // all — treat it as "not reduced" until mounted so the first client paint
+  // always matches the server-rendered markup.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+  const reduce = mounted && rawReduce;
 
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">

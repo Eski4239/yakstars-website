@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { aircraft } from "@/data/aircraft";
 
@@ -11,6 +11,15 @@ import { aircraft } from "@/data/aircraft";
 export function AircraftExplorer() {
   const [active, setActive] = useState<string>(aircraft.hotspots[0].id);
   const reduce = useReducedMotion();
+  // `reduce` resolves synchronously via matchMedia on the client, which can
+  // differ from the server's assumption and change whether the ping ring
+  // renders at all — gate it on mount so the first client paint always
+  // matches the server-rendered markup, then reveal it right after.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
   const current = aircraft.hotspots.find((h) => h.id === active)!;
 
   return (
@@ -80,7 +89,7 @@ export function AircraftExplorer() {
               style={{ left: `${h.x}%`, top: `${h.y}%` }}
             >
               <span className="relative flex h-9 w-9 items-center justify-center">
-                {!reduce && isActive && (
+                {mounted && !reduce && isActive && (
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red/30" />
                 )}
                 <span

@@ -11,13 +11,22 @@ Every page is statically prerendered.
 
 ```bash
 npm install
-npm run dev     # http://localhost:3000 (port busy? use: npx next dev -p 3001)
-npm run build   # production build (fully static)
-npm run start   # serve the production build
+npm run dev         # http://localhost:3000 (port busy? use: npx next dev -p 3001)
+npm run build       # production build (fully static)
+npm run start       # serve the production build
 npm run lint
+npm run test:e2e    # Playwright end-to-end/interaction tests
 ```
 
-There is no test suite configured in this repo — rely on `npm run build` and `npm run lint` to catch regressions.
+## Testing
+
+[Playwright](https://playwright.dev) drives the end-to-end/interaction suite in `e2e/` — the
+site leans heavily on Framer Motion and interactive widgets (aircraft explorer, display
+sequence, gallery lightbox), so real browser interaction is worth more here than unit tests.
+`npm run test:e2e` builds and serves a production build, then runs each spec against a
+desktop Chrome project, a Pixel 7 mobile project, and a small `motion` project for the few
+specs that assert on animation actually playing (everything else runs with
+`prefers-reduced-motion: reduce` forced, so tests don't depend on animation timing).
 
 ## Git workflow
 
