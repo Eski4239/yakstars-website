@@ -6,7 +6,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 # Yakstars website — agent notes
 
-The Yakstars Display Team's website — a Spanish–Portuguese formation aerobatic team flying six Yak-52 warbirds. Next.js 16 App Router + TypeScript + Tailwind v4 + Framer Motion. Fully static (`npm run build` prerenders every route). Node lives at `/opt/homebrew/bin` — export `PATH="/opt/homebrew/bin:$PATH"` before npm/npx commands.
+The Yakstars Display Team's website — a Spanish–Portuguese formation aerobatic team flying six Yak-52 warbirds. Next.js 16.2.10 App Router + TypeScript + React 19.2.4 + Tailwind v4 + Framer Motion. Fully static (`npm run build` prerenders every route). Node lives at `/opt/homebrew/bin` — export `PATH="/opt/homebrew/bin:$PATH"` before npm/npx commands.
+
+No CI/deploy pipeline is configured in this repo (no `.github/workflows`) — pushes to `origin/main` are not gated by any automated check, so `npm run build`/`npm run lint` before pushing are the only safety net.
 
 ## Tech Stack
 
@@ -48,9 +50,11 @@ This repo has a GitHub remote (`origin`) — treat it as the durable record of p
   - Adding/editing a pilot: edit the `pilots` array in `team.ts` — pilot detail pages are generated from it via `/team/pilots/[slug]`.
   - The display-sequence explorer and formation diagrams read from `display.ts`.
 - **`src/app/`** — App Router routes: home, about, team (+ `team/pilots/[slug]`, `team/support`), aircraft, display, schedule, gallery, sponsors, media, contact, privacy, legal, 404, plus generated `sitemap.xml`, `robots.txt`, and an `opengraph-image.tsx` (OG image; note it hand-codes brand colors as hex since `next/og`'s `ImageResponse`/Satori doesn't support CSS custom properties — keep these in sync manually with `globals.css` if the palette changes).
-- **`src/components/motion.tsx`** — motion primitives (`Reveal`, `Stagger`, `Counter`, `Parallax`, `DrawPath`). All new animation must go through these and respect `useReducedMotion` (no ad-hoc Framer Motion usage that skips reduced-motion handling).
+- **`src/components/motion.tsx`** — motion primitives (`Reveal`, `Stagger`, `StaggerItem`, `Counter`, `Parallax`, `DrawPath`). All new animation must go through these and respect `useReducedMotion` (no ad-hoc Framer Motion usage that skips reduced-motion handling).
 - **`src/components/ui.tsx`** — design system primitives (`Button`, `SectionHeading`, `Eyebrow`, `PageHero`).
 - **`src/components/art/`** — SVG artwork: plane silhouette, formation diagrams, hero flight paths, and `SkyPoster.tsx` (branded gallery placeholder art, used until real show photography is added — see "Photography" below).
+- **`src/components/Nav.tsx`, `Footer.tsx`, `Logo.tsx`** — shared site chrome used on every route.
+- **`src/components/JsonLd.tsx`** — Schema.org structured data (PerformingGroup + Event list), see "SEO & accessibility" below.
 - Per-page interactive widgets live alongside their route's concern, e.g. `components/aircraft/AircraftExplorer.tsx`, `components/display/SequenceExplorer.tsx`, `components/gallery/GalleryGrid.tsx`, `components/schedule/ScheduleList.tsx`, `components/contact/ContactForm.tsx`, `components/home/FormationCycler.tsx`.
 
 ### Design tokens
