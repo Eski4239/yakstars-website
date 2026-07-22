@@ -75,7 +75,7 @@ export default function HomePage() {
           {pilots.map((p) => (
             <StaggerItem key={p.slug}>
               <Link
-                href={`/team/pilots/${p.slug}`}
+                href="/team"
                 className="group flex h-[28rem] flex-col rounded-lg border border-line bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue hover:shadow-xl hover:shadow-blue/10"
               >
                 <span
@@ -101,7 +101,7 @@ export default function HomePage() {
         </Stagger>
 
         <Reveal delay={0.1} className="container-x mt-10 flex justify-center">
-          <Button href="/team/pilots" variant="outline">
+          <Button href="/team" variant="outline">
             Meet the pilots
           </Button>
         </Reveal>

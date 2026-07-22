@@ -29,10 +29,10 @@ test.describe("home page", () => {
     await expect(page.getByRole("heading", { name: "Loop in Vic Formation" })).toBeVisible();
   });
 
-  test("team grid links to each pilot's page", async ({ page }) => {
+  test("team grid links to the team page", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("link", { name: /Miguel Padilla/ }).click();
-    await expect(page).toHaveURL(/\/team\/pilots\/miguel-padilla$/);
+    await expect(page).toHaveURL(/\/team$/);
   });
 
   test("aircraft hook links to the aircraft page", async ({ page }) => {

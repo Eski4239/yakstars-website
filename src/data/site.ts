@@ -64,8 +64,6 @@ export const navLinks = [
 export const footerLinks = {
   team: [
     { href: "/team", label: "Overview" },
-    { href: "/team/pilots", label: "Pilots" },
-    { href: "/team/support", label: "Support Team" },
   ],
   experience: [
     { href: "/aircraft", label: "The Yak-52" },
