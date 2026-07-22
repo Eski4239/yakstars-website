@@ -4,6 +4,8 @@ export type Maneuver = {
   aircraft: number; // number of aircraft involved
   formation?: "vic" | "diamond" | "arrow" | "trail" | "solo" | "mixed";
   description: string;
+  /** Filename under public/display/ — see AGENTS.md "Photography" for the swap-in convention. */
+  image?: string;
 };
 
 export const display = {
@@ -20,6 +22,7 @@ export const display = {
       formation: "vic",
       description:
         "Five aircraft arrive fast and low in a tight Vic and pull together through a full formation loop — the opening statement of the show.",
+      image: "loop-in-vic-formation.jpg",
     },
     {
       order: 2,
@@ -28,6 +31,7 @@ export const display = {
       formation: "solo",
       description:
         "While the formation repositions, the solo carves the display line with high-energy aerobatics.",
+      image: "solo-manoeuvres-2.jpg",
     },
     {
       order: 3,
@@ -36,6 +40,7 @@ export const display = {
       formation: "diamond",
       description:
         "Four aircraft lock into a diamond and trace a cloverleaf into a loop, holding position through every change of plane.",
+      image: "cloverleaf-loop-diamond.jpg",
     },
     {
       order: 4,
@@ -43,6 +48,7 @@ export const display = {
       aircraft: 1,
       formation: "solo",
       description: "The solo returns, filling the sky between formation passes.",
+      image: "solo-manoeuvres-4.jpg",
     },
     {
       order: 5,
@@ -51,6 +57,7 @@ export const display = {
       formation: "diamond",
       description:
         "The diamond rolls as a single aircraft, then bends the formation through a 270-degree turn back onto the display axis.",
+      image: "barrel-roll-270-turn-diamond.jpg",
     },
     {
       order: 6,
@@ -58,6 +65,7 @@ export const display = {
       aircraft: 1,
       formation: "solo",
       description: "Gyroscopic figures and vertical work in front of the crowd.",
+      image: "solo-manoeuvres-6.jpg",
     },
     {
       order: 7,
@@ -66,6 +74,7 @@ export const display = {
       formation: "mixed",
       description:
         "Four aircraft converge from opposite ends of the display line and cross at the centre point — timed to the second.",
+      image: "french-crossing.jpg",
     },
     {
       order: 8,
@@ -73,6 +82,7 @@ export const display = {
       aircraft: 1,
       formation: "solo",
       description: "The final solo passage builds toward the closing sequence.",
+      image: "solo-manoeuvres-8.jpg",
     },
     {
       order: 9,
@@ -81,6 +91,7 @@ export const display = {
       formation: "trail",
       description:
         "Two aircraft in close trail follow each other through a loop, a barrel roll and a 360-degree turn — a study in following precision.",
+      image: "close-trail-sequence.jpg",
     },
     {
       order: 10,
@@ -89,6 +100,7 @@ export const display = {
       formation: "mixed",
       description:
         "The team’s signature three-ship: barrel roll, loop and wingovers layered into one continuous figure.",
+      image: "tiramisu.jpg",
     },
     {
       order: 11,
@@ -97,6 +109,7 @@ export const display = {
       formation: "arrow",
       description:
         "All six aircraft sweep past the crowd line in a single arrow — the full team in one frame.",
+      image: "low-pass-arrow-formation.jpg",
     },
     {
       order: 12,
@@ -105,6 +118,7 @@ export const display = {
       formation: "arrow",
       description:
         "The formation pitches up and breaks apart in sequence, smoke on, engines singing — the Yakstars’ farewell.",
+      image: "final-break.jpg",
     },
   ] satisfies Maneuver[],
   philosophy: [

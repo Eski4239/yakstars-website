@@ -43,6 +43,14 @@ export const site = {
   ],
 } as const;
 
+/** Filenames under public/hero/ — full-bleed rotating hero background. Placeholder seeds until real photography exists. */
+export const heroImages = [
+  { seed: 20, filename: "hero-1.jpg" },
+  { seed: 21, filename: "hero-2.jpg" },
+  { seed: 22, filename: "hero-3.jpg" },
+  { seed: 23, filename: "hero-4.jpg" },
+] as const;
+
 export const navLinks = [
   { href: "/team", label: "The Team" },
   { href: "/aircraft", label: "Aircraft" },

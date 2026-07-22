@@ -11,7 +11,8 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+// Punchier ease-out than a typical soft SaaS "glide" — snaps in fast, settles quick.
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 /** Fades and glides content upward when it enters the viewport. */
 export function Reveal({
@@ -34,7 +35,7 @@ export function Reveal({
       initial={reduce ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.9, delay, ease: EASE }}
+      transition={{ duration: 0.55, delay, ease: EASE }}
       className={className}
     >
       {children}
@@ -79,7 +80,7 @@ export function StaggerItem({
     <motion.div
       variants={{
         hidden: reduce ? { opacity: 1, y: 0 } : { opacity: 0, y },
-        show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
+        show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
       }}
       className={className}
     >

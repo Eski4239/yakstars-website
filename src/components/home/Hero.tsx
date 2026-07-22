@@ -1,91 +1,87 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui";
-import { HeroFlightPaths } from "@/components/art/HeroFlightPaths";
+import { SkyPoster } from "@/components/art/SkyPoster";
+import { heroImages } from "@/data/site";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-const WORD = "YAKSTARS";
+const EASE = [0.16, 1, 0.3, 1] as const;
+const TITLE = "Yakstars Aerobatic Team";
+const CROSSFADE_MS = 5200;
 
 export function Hero() {
   const reduce = useReducedMotion();
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (reduce) return;
+    const id = setInterval(
+      () => setActive((v) => (v + 1) % heroImages.length),
+      CROSSFADE_MS,
+    );
+    return () => clearInterval(id);
+  }, [reduce]);
 
   return (
-    <section className="relative flex min-h-svh flex-col justify-center overflow-hidden bg-white">
-      <HeroFlightPaths />
-
-      <div className="container-x relative pt-24 pb-16">
-        <motion.p
-          initial={reduce ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-eyebrow text-red"
-        >
-          Spanish–Portuguese precision aerobatic team
-        </motion.p>
-
-        <h1 className="mt-6 select-none" aria-label={WORD}>
-          <span aria-hidden className="flex flex-wrap">
-            {WORD.split("").map((ch, i) => (
-              <motion.span
-                key={i}
-                initial={reduce ? false : { opacity: 0, y: 90, rotate: 3 }}
-                animate={{ opacity: 1, y: 0, rotate: 0 }}
-                transition={{ duration: 1.1, delay: 0.35 + i * 0.055, ease: EASE }}
-                className="text-display-xl inline-block"
-              >
-                {ch}
-              </motion.span>
-            ))}
-          </span>
-        </h1>
-
-        <motion.p
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.05, ease: EASE }}
-          className="mt-8 text-2xl font-semibold tracking-tight text-ink md:text-3xl"
-        >
-          Precision.<span className="text-blue"> Passion.</span>
-          <span className="text-red"> Performance.</span>
-        </motion.p>
-
-        <motion.p
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.2, ease: EASE }}
-          className="mt-6 max-w-xl text-lg leading-relaxed text-slate"
-        >
-          Six Yak-52 warbirds. Tens of thousands of flight hours. One formation.
-          The largest civilian aerobatic display team in Southern Europe.
-        </motion.p>
-
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.35, ease: EASE }}
-          className="mt-10 flex flex-wrap items-center gap-4"
-        >
-          <Button href="/contact">Book the team</Button>
-          <Button href="/display" variant="outline">
-            Explore the display
-          </Button>
-        </motion.div>
+    <section className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-ink">
+      {/* Rotating background — SkyPoster placeholders until real show photography
+          lands in public/hero/ (see src/data/site.ts `heroImages`). */}
+      <div aria-hidden className="absolute inset-0">
+        {heroImages.map((img, i) => (
+          <SkyPoster
+            key={img.filename}
+            seed={img.seed}
+            className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ease-in-out ${
+              i === active ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
       </div>
 
-      <motion.div
-        aria-hidden
-        initial={reduce ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
+      <div className="container-x relative pb-16 pt-24 md:pb-24">
         <motion.div
-          animate={reduce ? undefined : { y: [0, 8, 0] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-          className="h-10 w-px bg-gradient-to-b from-transparent via-slate to-transparent"
-        />
-      </motion.div>
+          initial={reduce ? false : { opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
+          className="max-w-2xl rounded-lg bg-blue-deep/90 p-8 shadow-2xl shadow-black/40 backdrop-blur-sm md:p-12"
+        >
+          <h1 className="select-none" aria-label={TITLE}>
+            <span aria-hidden className="flex flex-wrap gap-x-[0.3em]">
+              {TITLE.split(" ").map((word, i) => (
+                <motion.span
+                  key={word}
+                  initial={reduce ? false : { opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.25 + i * 0.1, ease: EASE }}
+                  className="text-display-md inline-block text-white"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </span>
+          </h1>
+
+          <p className="mt-5 max-w-xl text-lg font-semibold leading-snug text-white md:text-xl">
+            The first Spanish–Portuguese Aerobatic Display Team flying Yak-52
+            Warbirds.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Button href="/contact" variant="light">
+              Book the team
+            </Button>
+            <Button
+              href="/display"
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white hover:text-ink"
+            >
+              Explore the display
+            </Button>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -58,18 +58,19 @@ export function SectionHeading({
 type ButtonProps = {
   href: string;
   children: React.ReactNode;
-  variant?: "primary" | "outline" | "ghost";
+  variant?: "primary" | "outline" | "ghost" | "light";
   className?: string;
 };
 
 export function Button({ href, children, variant = "primary", className = "" }: ButtonProps) {
   const base =
-    "group inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-all duration-300";
+    "group inline-flex items-center gap-2.5 rounded-lg px-7 py-3.5 text-[0.9375rem] font-bold tracking-tight transition-all duration-200";
   const styles = {
     primary: "bg-ink text-white hover:bg-blue hover:shadow-lg hover:shadow-blue/20",
     outline:
       "border border-line text-ink hover:border-ink hover:bg-ink hover:text-white",
     ghost: "text-blue hover:text-blue-deep px-0 py-0",
+    light: "bg-white text-ink hover:bg-gold hover:text-ink",
   }[variant];
   return (
     <Link href={href} className={`${base} ${styles} ${className}`}>

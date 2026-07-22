@@ -220,39 +220,6 @@ export const pilots: Pilot[] = [
     ],
     accent: "blue",
   },
-  {
-    slug: "david-jimenez",
-    name: "David Jimenez",
-    callsign: "Yakstar 6",
-    number: "6",
-    position: "Solo · Left & Right Outer Wing",
-    origin: "Madrid, Spain",
-    flightHours: 10000,
-    flightHoursLabel: "10,000+",
-    headline:
-      "Aerobatic champion across multiple categories; first flew at eleven years old.",
-    bio: [
-      "David Jimenez flies the solo and outer-wing positions. His path began at eleven, in the air with his father, and he earned his first licence while still a teenager.",
-      "He trained in hard-edged aerobatics on the Sukhoi Su-29M and the Yak-52, taking championship titles in multiple categories — precision he now channels into solo display flying between the formation’s passes.",
-      "Professionally he has flown the Cessna Citation 525, Learjet 35, Bombardier Global Express 6000 and Boeing 757, instructed as a TRI across the Airbus A320, A330 and A340 families, and today commands the Boeing 737 NG/MAX. His logbook exceeds ten thousand hours.",
-    ],
-    aircraft: ["Sukhoi Su-29M", "Yak-52", "Boeing 737 NG/MAX", "Global Express 6000", "Learjet 35"],
-    achievements: [
-      "Aerobatic championship titles in multiple categories",
-      "10,000+ flight hours",
-      "Boeing 737 NG/MAX captain",
-      "Former TRI — Airbus A320/A330/A340",
-      "First flight at age 11",
-    ],
-    timeline: [
-      { period: "Age 11", title: "First flight, with his father" },
-      { period: "Teens", title: "First pilot licence" },
-      { period: "Competition", title: "Champion — multiple categories", detail: "Sukhoi Su-29M & Yak-52" },
-      { period: "Corporate & airline", title: "Citation, Learjet, Global, B757" },
-      { period: "Yakstars", title: "Solo — Yakstar 6", detail: "Boeing 737 NG/MAX captain" },
-    ],
-    accent: "gold",
-  },
 ];
 
 export type SupportMember = {

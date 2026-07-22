@@ -1,6 +1,8 @@
 export const aircraft = {
   name: "Yakovlev Yak-52",
   short: "Yak-52",
+  /** Filename under public/aircraft/ — large hook image for the home page. Placeholder until real photography exists. */
+  hookImage: "hook.jpg",
   role: "Two-seat aerobatic warbird trainer",
   intro:
     "Designed by the Yakovlev Design Bureau in Moscow in the late 1970s, the Yak-52 trained generations of Soviet military pilots. More than 2,000 were built — every one of them by Aerostar in Bacău, Romania. It was engineered for hard use: minimal maintenance, primitive fields, and sustained aerobatics.",
