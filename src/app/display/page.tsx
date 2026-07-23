@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { PageHero, SectionHeading, Button } from "@/components/ui";
-import { Reveal, Stagger, StaggerItem, DrawPath } from "@/components/motion";
+import { Eyebrow, Button } from "@/components/ui";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { SequenceExplorer } from "@/components/display/SequenceExplorer";
+import { SkyPoster } from "@/components/art/SkyPoster";
 import { display } from "@/data/display";
 
 export const metadata: Metadata = {
@@ -17,88 +18,97 @@ const STATS = [
 ] as const;
 
 export default function DisplayPage() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <>
-      <PageHero
-        eyebrow="The display"
-        title={
-          <>
-            An airshow,
-            <br />
-            <span className="text-slate">choreographed to the second.</span>
-          </>
-        }
-        lede={display.intro}
-      >
-        <Stagger className="mt-12 grid max-w-2xl grid-cols-3 gap-8 border-t border-line pt-8">
-          {STATS.map((s) => (
-            <StaggerItem key={s.label}>
-              <p className="font-mono text-3xl font-bold tabular-nums md:text-4xl">{s.value}</p>
-              <p className="mt-2 text-xs uppercase tracking-[0.18em] text-slate">{s.label}</p>
-            </StaggerItem>
-          ))}
-        </Stagger>
-      </PageHero>
+      {/* ————— Hero ————— */}
+      <header className="relative overflow-hidden pt-28 pb-14 text-center md:pt-36 md:pb-20">
+        {/* Hero background slot: public/display/hero.jpg — swap SkyPoster for next/image once uploaded */}
+        <SkyPoster seed={0} label="Yakstars in formation" className="absolute inset-0 h-full w-full" />
+        <div className="absolute inset-0 bg-ink/70" />
+        <div className="container-x relative">
+          <Reveal>
+            <h1 className="text-display-lg mx-auto max-w-3xl text-balance text-white">
+              Our display, choreographed to the second.
+            </h1>
+          </Reveal>
+          <Stagger className="mx-auto mt-12 grid max-w-2xl grid-cols-3 gap-4">
+            {STATS.map((s) => (
+              <StaggerItem key={s.label}>
+                <div className="flex h-full flex-col justify-center rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
+                  <p className="font-mono text-3xl font-bold tabular-nums text-white md:text-4xl">
+                    {s.value}
+                  </p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.18em] text-white/70">{s.label}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </header>
 
-      {/* ————— The loop, drawn ————— */}
-      <section aria-hidden className="overflow-hidden border-b border-line">
-        <svg viewBox="0 0 1440 240" className="w-full" preserveAspectRatio="xMidYMid slice">
-          <DrawPath
-            d="M-40 200 C 300 170, 500 150, 640 110 C 780 70, 780 30, 700 40 C 620 50, 660 120, 800 130 C 980 143, 1240 120, 1480 60"
-            stroke="var(--color-line)"
-            strokeWidth={3}
-            duration={2.6}
-          />
-          <DrawPath
-            d="M-40 220 C 400 205, 900 190, 1480 120"
-            stroke="var(--color-sky)"
-            strokeWidth={22}
-            duration={3}
-            delay={0.3}
-          />
-        </svg>
+      {/* ————— Highlight reel ————— */}
+      <section className="py-14 md:py-20">
+        <div className="container-x">
+          <Reveal>
+            {/* Highlight reel slot: public/display/highlight-reel.mp4 — swap for
+                <video autoPlay muted loop playsInline> once footage is uploaded */}
+            <div className="relative aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
+              <SkyPoster seed={0} label="Yakstars highlight reel" className="absolute inset-0 h-full w-full" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+                  <span
+                    aria-hidden
+                    className="ml-1 h-0 w-0 border-y-[10px] border-l-[16px] border-y-transparent border-l-white"
+                  />
+                </span>
+              </div>
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {/* ————— Sequence explorer ————— */}
-      <section className="py-24 md:py-32">
+      <section className="border-t border-line py-24 md:py-32">
         <div className="container-x">
-          <SectionHeading
-            eyebrow="2026 sequence"
-            title="Twelve chapters. One story."
-            lede="A new sequence is defined every season and trained until it is second nature. This is the 2026 show, in order."
-          />
+          <Reveal>
+            <Eyebrow size="lg">Our sequence</Eyebrow>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate">
+              Every year the team sits down and rebuilds the sequence from scratch, weighing new
+              ideas against manoeuvres that have already proven themselves. Nothing goes in front
+              of a crowd until every pilot has flown it enough times that it feels automatic.
+              Below is the {currentYear} sequence of our display, in order.
+            </p>
+          </Reveal>
           <Reveal delay={0.15} className="mt-14">
             <SequenceExplorer />
           </Reveal>
         </div>
       </section>
 
-      {/* ————— Philosophy ————— */}
-      <section className="border-t border-line bg-mist py-24 md:py-32">
-        <div className="container-x">
-          <SectionHeading
-            eyebrow="How it's built"
-            title="Precision is a process."
-          />
-          <Stagger className="mt-14 grid gap-5 md:grid-cols-3">
-            {display.philosophy.map((p, i) => (
-              <StaggerItem key={p.title}>
-                <div className="h-full rounded-2xl bg-white p-8">
-                  <span className="font-mono text-sm tabular-nums text-red">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-4 text-xl font-bold tracking-tight">{p.title}</h3>
-                  <p className="mt-3 leading-relaxed text-slate">{p.text}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-          <Reveal delay={0.1} className="mt-14 flex flex-wrap gap-4">
-            <Button href="/schedule">See where it flies next</Button>
-            <Button href="/contact" variant="outline">
-              Book the display
-            </Button>
-          </Reveal>
+      {/* ————— Booking banner ————— */}
+      <section className="relative overflow-hidden border-t border-line py-24 md:py-32">
+        <SkyPoster
+          seed={4}
+          label="Yakstars in formation"
+          className="absolute inset-0 h-full w-full opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/90 to-white/70" />
+        <div className="container-x relative">
+          <div className="mx-auto max-w-2xl rounded-lg border border-line bg-white/95 p-12 text-center shadow-xl shadow-ink/5 backdrop-blur-sm md:p-16">
+            <Reveal>
+              <h2 className="text-display-md text-balance">The display can be tailored for your show.</h2>
+            </Reveal>
+            <Reveal delay={0.08} className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <Button href="/schedule">See where it flies next</Button>
+              <Button href="/contact" variant="outline">
+                Book the display
+              </Button>
+            </Reveal>
+          </div>
         </div>
       </section>
     </>

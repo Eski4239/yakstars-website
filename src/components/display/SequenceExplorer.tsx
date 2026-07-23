@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FormationDiagram } from "@/components/art/Formation";
-import { display, formations } from "@/data/display";
+import { SkyPoster } from "@/components/art/SkyPoster";
+import { display } from "@/data/display";
 
 /**
  * The full display sequence: pick a manoeuvre on one side, watch the
@@ -19,40 +20,41 @@ export function SequenceExplorer() {
     <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
       {/* Diagram panel */}
       <div className="lg:sticky lg:top-28 lg:self-start">
-        <div className="rounded-3xl bg-blue-deep p-8 text-white md:p-10">
-          <div className="flex items-baseline justify-between gap-4">
-            <p className="font-mono text-sm tabular-nums text-white/50">
-              {String(active.order).padStart(2, "0")} / {String(display.sequence.length).padStart(2, "0")}
-            </p>
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-gold">
-              {active.aircraft} {active.aircraft === 1 ? "aircraft" : "aircraft"}
-            </p>
+        <div className="overflow-hidden rounded-3xl bg-blue-deep text-white">
+          <div className="relative aspect-[4/3]">
+            {/* Photo slot: public/display/{active.image} — see src/data/display.ts */}
+            <SkyPoster seed={active.order} label={active.name} className="absolute inset-0 h-full w-full" />
           </div>
 
-          <FormationDiagram
-            formation={formationKey}
-            tone="white"
-            className="mx-auto mt-4 aspect-square w-full max-w-sm text-white"
-          />
+          <div className="p-8 md:p-10">
+            <div className="flex items-center justify-between gap-4">
+              <p className="font-mono text-sm tabular-nums text-white/50">
+                {String(active.order).padStart(2, "0")} / {String(display.sequence.length).padStart(2, "0")}
+              </p>
+              <div className="flex items-center gap-3">
+                <FormationDiagram formation={formationKey} tone="white" className="h-10 w-10" />
+                <p className="font-mono text-xs uppercase tracking-[0.3em] text-gold">
+                  {active.aircraft} aircraft
+                </p>
+              </div>
+            </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active.order}
-              initial={reduce ? false : { opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduce ? undefined : { opacity: 0, y: -8 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              aria-live="polite"
-            >
-              <h3 className="text-2xl font-bold tracking-tight">{active.name}</h3>
-              <p className="mt-1 font-mono text-xs uppercase tracking-[0.25em] text-white/50">
-                {formations[formationKey].name} formation
-              </p>
-              <p className="mt-4 min-h-[4.5rem] leading-relaxed text-white/70">
-                {active.description}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.order}
+                initial={reduce ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduce ? undefined : { opacity: 0, y: -8 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                aria-live="polite"
+              >
+                <h3 className="mt-4 text-2xl font-bold tracking-tight">{active.name}</h3>
+                <p className="mt-4 min-h-[4.5rem] leading-relaxed text-white/70">
+                  {active.description}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
 

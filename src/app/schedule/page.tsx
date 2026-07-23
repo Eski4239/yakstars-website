@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { PageHero, Button } from "@/components/ui";
+import { Eyebrow, Button } from "@/components/ui";
 import { Reveal } from "@/components/motion";
 import { ScheduleList } from "@/components/schedule/ScheduleList";
+import { EventsMap } from "@/components/schedule/EventsMap";
+import { BannerSlideshow } from "@/components/schedule/BannerSlideshow";
 import { EventsJsonLd } from "@/components/JsonLd";
-import { scheduleNote } from "@/data/events";
 
 export const metadata: Metadata = {
   title: "Schedule",
@@ -17,36 +18,41 @@ export default function SchedulePage() {
   return (
     <>
       <EventsJsonLd />
-      <PageHero
-        eyebrow="Schedule"
-        title={
-          <>
-            One season.
-            <br />
-            <span className="text-slate">Two countries. Full throttle.</span>
-          </>
-        }
-        lede={scheduleNote}
-      />
+
+      <header className="border-b border-line bg-white pt-28 pb-14 md:pt-36 md:pb-20">
+        <div className="container-x">
+          <Reveal>
+            <h1 className="text-display-lg text-balance">Schedule</h1>
+          </Reveal>
+        </div>
+      </header>
 
       <section className="py-24 md:py-32">
         <div className="container-x">
           <Reveal>
             <ScheduleList today={today} />
           </Reveal>
+
+          <Reveal delay={0.1} className="mt-20">
+            <Eyebrow>Where we&rsquo;ve flown</Eyebrow>
+            <div className="mt-6">
+              <EventsMap today={today} />
+            </div>
+          </Reveal>
+
           <Reveal delay={0.1} className="mt-16">
-            <div className="rounded-3xl bg-blue-deep p-10 text-white md:p-14">
+            <BannerSlideshow>
               <h2 className="text-display-md max-w-2xl text-balance">
-                Want the Yakstars over your event?
+                Bring the Yakstars to your event
               </h2>
               <p className="mt-5 max-w-xl text-lg text-white/70">
-                Airshows, festivals, and private events across Europe — the
-                team brings a complete, self-supported display operation.
+                We fly airshows, festivals and private events all over Europe, and the team
+                travels with everything it needs to put on a complete display.
               </p>
-              <Button href="/contact" className="mt-9 bg-white text-ink hover:bg-gold">
+              <Button href="/contact" variant="light" className="mt-9">
                 Start the conversation
               </Button>
-            </div>
+            </BannerSlideshow>
           </Reveal>
         </div>
       </section>

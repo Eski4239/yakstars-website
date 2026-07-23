@@ -12,8 +12,6 @@ export const display = {
   duration: "15–17 min",
   figures: "14+",
   displaysFlown: "200+",
-  intro:
-    "Fifteen to seventeen minutes. More than fourteen figures. Six radial engines moving as one. The Yakstars display opens with a fast, powerful approach in Vic formation — aircraft in extremely tight proximity — and does not let go until the final break.",
   sequence: [
     {
       order: 1,
@@ -21,7 +19,7 @@ export const display = {
       aircraft: 5,
       formation: "vic",
       description:
-        "Five aircraft arrive fast and low in a tight Vic and pull together through a full formation loop — the opening statement of the show.",
+        "Five aircraft arrive fast and low in a tight Vic and pull together through a full formation loop, opening the show.",
       image: "loop-in-vic-formation.jpg",
     },
     {
@@ -35,7 +33,7 @@ export const display = {
     },
     {
       order: 3,
-      name: "Cloverleaf & Loop — Diamond",
+      name: "Diamond Cloverleaf and Loop",
       aircraft: 4,
       formation: "diamond",
       description:
@@ -52,7 +50,7 @@ export const display = {
     },
     {
       order: 5,
-      name: "Barrel Roll & 270° Turn — Diamond",
+      name: "Diamond Barrel Roll and 270° Turn",
       aircraft: 4,
       formation: "diamond",
       description:
@@ -73,7 +71,7 @@ export const display = {
       aircraft: 4,
       formation: "mixed",
       description:
-        "Four aircraft converge from opposite ends of the display line and cross at the centre point — timed to the second.",
+        "Four aircraft converge from opposite ends of the display line and cross at the centre point, timed to the second.",
       image: "french-crossing.jpg",
     },
     {
@@ -90,7 +88,7 @@ export const display = {
       aircraft: 2,
       formation: "trail",
       description:
-        "Two aircraft in close trail follow each other through a loop, a barrel roll and a 360-degree turn — a study in following precision.",
+        "Two aircraft in close trail follow each other through a loop, a barrel roll and a 360-degree turn, a study in following precision.",
       image: "close-trail-sequence.jpg",
     },
     {
@@ -104,11 +102,11 @@ export const display = {
     },
     {
       order: 11,
-      name: "Low Pass — Arrow Formation",
+      name: "Arrow Formation Low Pass",
       aircraft: 6,
       formation: "arrow",
       description:
-        "All six aircraft sweep past the crowd line in a single arrow — the full team in one frame.",
+        "All six aircraft sweep past the crowd line in a single arrow, the full team in one frame.",
       image: "low-pass-arrow-formation.jpg",
     },
     {
@@ -117,24 +115,10 @@ export const display = {
       aircraft: 6,
       formation: "arrow",
       description:
-        "The formation pitches up and breaks apart in sequence, smoke on, engines singing — the Yakstars’ farewell.",
+        "The formation pitches up and breaks apart in sequence, smoke on and engines singing, in the Yakstars’ farewell.",
       image: "final-break.jpg",
     },
   ] satisfies Maneuver[],
-  philosophy: [
-    {
-      title: "Choreographed, not improvised",
-      text: "A new display sequence is defined every year, and every manoeuvre is exhaustively evaluated and trained before it flies in public.",
-    },
-    {
-      title: "Selected, not assembled",
-      text: "Before each season the Chief Pilot evaluates and selects the pilots who will fly. Three characteristics decide it: experience, discipline and flying skills.",
-    },
-    {
-      title: "Two ships to six",
-      text: "The display alternates full-formation figures with two-ship and solo aerobatics, so the sky in front of the crowd is never empty.",
-    },
-  ],
 } as const;
 
 /** Relative aircraft positions for formation diagrams (x, y in a 0–100 box). */

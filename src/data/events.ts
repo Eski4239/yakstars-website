@@ -6,7 +6,8 @@ export type TeamEvent = {
   year: number;
   /** ISO date of the last show day, used to compute upcoming/past */
   endDate: string;
-  note?: string;
+  lat: number;
+  lon: number;
 };
 
 export const events: TeamEvent[] = [
@@ -17,7 +18,8 @@ export const events: TeamEvent[] = [
     dates: "20–21 June 2026",
     year: 2026,
     endDate: "2026-06-21",
-    note: "Display flights over the festival",
+    lat: 38.7223,
+    lon: -9.1393,
   },
   {
     name: "Gijón International Airshow",
@@ -26,6 +28,8 @@ export const events: TeamEvent[] = [
     dates: "27–28 June 2025",
     year: 2025,
     endDate: "2025-06-28",
+    lat: 43.5322,
+    lon: -5.6611,
   },
   {
     name: "Beja International Airshow",
@@ -34,6 +38,8 @@ export const events: TeamEvent[] = [
     dates: "2–4 November 2024",
     year: 2024,
     endDate: "2024-11-04",
+    lat: 38.015,
+    lon: -7.8656,
   },
   {
     name: "Torre del Mar International Airshow",
@@ -42,6 +48,8 @@ export const events: TeamEvent[] = [
     dates: "19–20 July 2024",
     year: 2024,
     endDate: "2024-07-20",
+    lat: 36.7396,
+    lon: -4.0975,
   },
   {
     name: "Dunas Airshow",
@@ -50,6 +58,8 @@ export const events: TeamEvent[] = [
     dates: "17–18 & 31 May 2024",
     year: 2024,
     endDate: "2024-05-31",
+    lat: 40.6405,
+    lon: -8.6538,
   },
   {
     name: "Beiras Airshow",
@@ -58,6 +68,8 @@ export const events: TeamEvent[] = [
     dates: "1–2 March 2024",
     year: 2024,
     endDate: "2024-03-02",
+    lat: 39.8222,
+    lon: -7.4913,
   },
   {
     name: "Careto Airshow",
@@ -66,6 +78,8 @@ export const events: TeamEvent[] = [
     dates: "6–8 September 2023",
     year: 2023,
     endDate: "2023-09-08",
+    lat: 41.8073,
+    lon: -6.7568,
   },
   {
     name: "Red Burros Fly-in",
@@ -74,6 +88,8 @@ export const events: TeamEvent[] = [
     dates: "2023 season",
     year: 2023,
     endDate: "2023-08-31",
+    lat: 41.3406,
+    lon: -6.7139,
   },
   {
     name: "Dunas Airshow",
@@ -82,6 +98,8 @@ export const events: TeamEvent[] = [
     dates: "2023 season",
     year: 2023,
     endDate: "2023-06-30",
+    lat: 40.6405,
+    lon: -8.6538,
   },
   {
     name: "Beiras Airshow",
@@ -90,8 +108,7 @@ export const events: TeamEvent[] = [
     dates: "March 2023",
     year: 2023,
     endDate: "2023-03-24",
+    lat: 39.8222,
+    lon: -7.4913,
   },
 ];
-
-export const scheduleNote =
-  "The Yakstars fly a full season of airshows and events across Portugal and Spain every year, and have done so since 2017 — from Ponte de Sor and the Algarve to military bases across the Peninsula. Booking for the upcoming season is open.";

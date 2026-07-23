@@ -51,6 +51,13 @@ export const heroImages = [
   { seed: 23, filename: "hero-4.jpg" },
 ] as const;
 
+/** Filenames under public/schedule/ — rotating background for the schedule CTA banner. Placeholder seeds until real airshow photography exists. */
+export const scheduleImages = [
+  { seed: 10, filename: "airshow-1.jpg" },
+  { seed: 11, filename: "airshow-2.jpg" },
+  { seed: 12, filename: "airshow-3.jpg" },
+] as const;
+
 export const navLinks = [
   { href: "/team", label: "The Team" },
   { href: "/aircraft", label: "Aircraft" },

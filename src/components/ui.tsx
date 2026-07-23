@@ -4,17 +4,22 @@ import { Reveal } from "@/components/motion";
 export function Eyebrow({
   children,
   tone = "red",
+  size = "sm",
   className = "",
 }: {
   children: React.ReactNode;
   tone?: "red" | "blue" | "slate";
+  size?: "sm" | "lg";
   className?: string;
 }) {
   const color =
     tone === "red" ? "text-red" : tone === "blue" ? "text-blue" : "text-slate";
+  const sizeCls = size === "lg" ? "text-2xl font-bold tracking-tight md:text-3xl" : "text-eyebrow";
   return (
-    <p className={`text-eyebrow ${color} ${className}`}>
-      <span aria-hidden className="mr-3 inline-block h-px w-8 translate-y-[-3px] bg-current" />
+    <p className={`${sizeCls} ${color} ${className}`}>
+      {size === "sm" && (
+        <span aria-hidden className="mr-3 inline-block h-px w-8 translate-y-[-3px] bg-current" />
+      )}
       {children}
     </p>
   );

@@ -7,7 +7,7 @@ import type { Pilot } from "@/data/team";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const BADGE =
-  "flex h-10 w-10 items-center justify-center rounded-lg border border-white/40 bg-white/25 text-sm font-bold tabular-nums text-white backdrop-blur-sm";
+  "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line bg-mist text-sm font-bold tabular-nums text-ink";
 
 export function PilotCard({
   pilot,
@@ -31,30 +31,33 @@ export function PilotCard({
 
   return (
     <>
-      <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-line">
-        {/* Image slot: public/team/{slug}-portrait.jpg */}
-        <SkyPoster
-          seed={pilot.number.length + pilot.name.length}
-          className="absolute inset-0 h-full w-full"
-        />
-        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 bg-ink p-5">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/70">
-              {pilot.callsign}
-            </p>
-            <h3 className="mt-1 text-xl font-bold tracking-tight text-white">{pilot.name}</h3>
-          </div>
-          <div className="flex items-center gap-3">
+      <div className="overflow-hidden rounded-2xl border border-line bg-white">
+        <div className="relative">
+          {/* Image slot: public/team/{slug}-portrait.jpg */}
+          <SkyPoster
+            seed={pilot.number.length + pilot.name.length}
+            className="aspect-[3/4] w-full"
+          />
+          <button
+            type="button"
+            onClick={onToggle}
+            aria-expanded={open}
+            aria-label={`Expand ${pilot.name}`}
+            className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-ink text-xl font-bold text-white transition-transform hover:scale-110"
+          >
+            +
+          </button>
+        </div>
+
+        <div className="p-6">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-faint">
+                {pilot.callsign}
+              </p>
+              <h3 className="mt-1 text-xl font-bold tracking-tight">{pilot.name}</h3>
+            </div>
             <span className={BADGE}>{pilot.number}</span>
-            <button
-              type="button"
-              onClick={onToggle}
-              aria-expanded={open}
-              aria-label={`Expand ${pilot.name}`}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/25 text-xl font-bold text-white backdrop-blur-sm transition-transform hover:scale-110"
-            >
-              +
-            </button>
           </div>
         </div>
       </div>

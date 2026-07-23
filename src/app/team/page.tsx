@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Eyebrow, SectionHeading } from "@/components/ui";
+import { Eyebrow } from "@/components/ui";
 import { Reveal } from "@/components/motion";
 import { TeamHero } from "@/components/team/TeamHero";
 import { PilotGrid } from "@/components/team/PilotGrid";
@@ -20,7 +20,7 @@ export default function TeamPage() {
       <section className="border-t border-line py-24 md:py-32">
         <div className="container-x">
           <Reveal>
-            <Eyebrow>Display pilots</Eyebrow>
+            <Eyebrow size="lg">Display pilots</Eyebrow>
           </Reveal>
           <div className="mt-10">
             <PilotGrid pilots={pilots} />
@@ -30,7 +30,9 @@ export default function TeamPage() {
 
       <section className="bg-mist py-24 md:py-32">
         <div className="container-x">
-          <SectionHeading title="Support Team" />
+          <Reveal>
+            <Eyebrow size="lg">Support Team</Eyebrow>
+          </Reveal>
           <div className="mt-14">
             <SupportTeamTiles members={supportTeam} />
           </div>
